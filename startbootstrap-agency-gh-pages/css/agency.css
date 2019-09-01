@@ -17,6 +17,10 @@ a {
   color: #fed136;
 }
 
+.inputCadastro{
+  width: 530px;
+}
+
 a:hover {
   color: #fec503;
 }
