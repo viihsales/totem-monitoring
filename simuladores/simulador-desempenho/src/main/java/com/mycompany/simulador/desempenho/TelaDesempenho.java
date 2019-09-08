@@ -114,9 +114,14 @@ public class TelaDesempenho extends javax.swing.JFrame {
         Random aleatorio = new Random();
         Integer cpu = aleatorio.nextInt(101);
         Integer memoria = aleatorio.nextInt(101);
+        
+        Double ghz = (3.2 * cpu) / 100;
+        Double gb = (8.0 * memoria) / 100;
+        
         Integer disco = aleatorio.nextInt(101);
-        lCpu.setText(String.format("%d%%", cpu));
-        lMemoria.setText(String.format("%d%%", memoria));
+        
+        lCpu.setText(String.format("%d%% %.2f/3,2GHz", cpu, ghz));
+        lMemoria.setText(String.format("%d%% %.2f/8,0 GB", memoria, gb));
         lDisco.setText(String.format("%d%%", disco));
     }//GEN-LAST:event_jButton1ActionPerformed
 
