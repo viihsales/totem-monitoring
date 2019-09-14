@@ -3,12 +3,13 @@ var router = express.Router();
 var banco = require('../app-banco');
 
 router.post('/login', function (req, res, next) {
-  console.log(banco.conexao);
 
   banco.conectar().then(() => {
     console.log(`Chegou p/ login: ${JSON.stringify(req.body)}`);
+
     var email = req.body.email;
     var senha = req.body.senha;
+
     if (email == undefined || senha == undefined) {
       throw new Error(`Algo de errado não está certo: ${email} / ${senha}`);
     }

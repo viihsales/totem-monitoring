@@ -1,11 +1,10 @@
 function verificarAutenticacao() {
-  if (sessionStorage.usuario_bandtec != undefined) {
-    window.location.href = '#';
+  if (sessionStorage.usuario != undefined) {
+    window.location.href = 'cadastro.html';
   }
 }
 
 function logar() {
-  console.log('EFETUANDO LOGIN...');
 
   wait();
 
@@ -17,8 +16,7 @@ function logar() {
   }).then(function (response) {
     if (response.ok) {
       response.json().then(function (resposta) {
-        console.log(responde.email)
-        sessionStorage.usuario_bandtec = resposta.email;
+        sessionStorage.usuario = resposta.email_admin;
         verificarAutenticacao();
       });
     } else {
