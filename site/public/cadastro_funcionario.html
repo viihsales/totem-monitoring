@@ -5,9 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Login | Totem Monitoring</title>
-  <link rel="icon" href="img/aviao.png" type="image/x-icon" />
-  <link rel="shortcut icon" href="img/aviao.png" type="image/x-icon" />
+  <title>Document</title>
+
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
@@ -53,22 +52,37 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h2 class="section-heading text-uppercase">Login</h2>
+          <h2 class="section-heading text-uppercase">Cadastro</h2>
         </div>
       </div>
       <div class="row">
         <div class="col-lg-12 text-center">
-          <form id="form_login" method="POST" onsubmit="return logar()">
+          <form id="form_cadastro" name="sentMessage" novalidate="novalidate" method="POST" onsubmit="return cadastrarFuncionario()">
             <div class="row">
               <div class="col-lg-12">
                 <div class="form-group">
-                  <input class="inputCadastro" id="email" type="email" placeholder="Email *" name="email" required="required"
+                  <input class="inputCadastro" id="name" type="text" name="nome" placeholder="Nome funcionário *" required="required"
+                    data-validation-required-message="Insira o Nome do funcionário.">
+                  <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group">
+                  <input class="inputCadastro" id="email" type="email" name="email" placeholder="Email *" required="required"
                     data-validation-required-message="Insira o Email.">
                   <p class="help-block text-danger"></p>
                 </div>
                 <div class="form-group">
-                  <input class="inputCadastro" id="password" type="password" placeholder="Senha *" name="senha" required="required"
+                  <input class="inputCadastro" id="cpf" type="text" name="cpf" placeholder="CPF *" required="required"
+                    data-validation-required-message="Insira o CPF.">
+                  <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group">
+                  <input class="inputCadastro" id="password" type="password" name="password" placeholder="Senha *" required="required"
                     data-validation-required-message="Insira a senha.">
+                  <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group">
+                  <input class="inputCadastro" id="passwordConfirmation" type="password" name="passwordConfirmation" placeholder="Repita a Senha *" required="required"
+                    data-validation-required-message="Confirme a senha.">
                   <p class="help-block text-danger"></p>
                 </div>
               </div>
@@ -77,7 +91,7 @@
             <div class="col-lg-12 text-center">
               <div id="success"></div>
               <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">
-                Logar-se</button>
+                Cadastrar-se</button>
             </div>
           </form>
         </div>
@@ -86,15 +100,43 @@
   </section>
   <!-- Footer -->
   <footer class="footer">
-
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-4">
-            <span class="copyright">Copyright &copy; Totem Monitoring 2019 2ADSA</span>
-          </div>
-          <div class="col-md-4">
-
-    </footer>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4">
+          <span class="copyright">Copyright &copy; TotemMonitoring 2019</span>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline quicklinks">
+            <li class="list-inline-item">
+              <a href="#">Privacy Policy</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">Terms of Use</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -112,7 +154,6 @@
 
   <!-- Funções do banco JavaScript -->
   <script type="text/javascript" src="js/functions_banco.js"></script>
-
 </body>
 
 </html>
