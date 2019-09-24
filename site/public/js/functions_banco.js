@@ -30,13 +30,13 @@ function logar() {
   return false;
 }
 
-function cadastrarFuncionario() {
+function cadastrarUsuario() {
 
   wait();
 
   var formulario = new URLSearchParams(new FormData(form_cadastro));
 
-  fetch('/usuarios/cadastro_funcionario', {
+  fetch('/usuarios/cadastro_usuario', {
     method: "POST",
     body: formulario
   }).then(function (response) {

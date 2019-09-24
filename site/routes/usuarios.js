@@ -36,7 +36,7 @@ router.post('/login', function (req, res, next) {
 
 });
 
-router.post('/cadastro_funcionario', function (req, res, next) {
+router.post('/cadastro_usuario', function (req, res, next) {
 
   banco.conectar().then(() => {
     console.log(`Chegou p/ Cadastro: ${JSON.stringify(req.body)}`);
@@ -49,20 +49,14 @@ router.post('/cadastro_funcionario', function (req, res, next) {
     if (nome == undefined || email == undefined || cpf == undefined || password == undefined) {
       throw new Error(`Algo de errado não está certo: ${nome} / ${email} / ${cpf} / ${senha}`);
     }
-    return banco.sql.query(`select * from user_admin where email_admin='${email}' and senha_admin='${senha}'`);
+    return banco.sql.query(`insert into tb_user (nome, email, cpf, senha, admin) values ('${nome}', '${email}', '${cpf}', '${senha}', false`);
   }).then(consulta => {
 
-    console.log(`Usuários encontrados: ${JSON.stringify(consulta.recordset)}`);
-
-    if (consulta.recordset.length == 1) {
-      res.send(consulta.recordset[0]);
-    } else {
-      res.sendStatus(404);
-    }
+    console.log('Usuário cadastrado');
 
   }).catch(err => {
 
-    var erro = `Erro no login: ${err}`;
+    var erro = `Erro no cadastro: ${err}`;
     console.error(erro);
     res.status(500).send(erro);
 
