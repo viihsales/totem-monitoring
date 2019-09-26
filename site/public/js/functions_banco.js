@@ -1,6 +1,16 @@
 function verificarAutenticacao() {
   if (sessionStorage.usuario != undefined) {
-    window.location.href = 'cadastro.html';
+    if (sessionStorage.ativo == true){
+      if (sessionStorage.administrador == true){
+        //loga como administrador
+      } else{
+        //loga como funcionário
+      }
+    }
+    else{
+      // alerta de conta inativa
+    }
+    // window.location.href = 'cadastro.html';
   }
 }
 
@@ -16,8 +26,10 @@ function logar() {
   }).then(function (response) {
     if (response.ok) {
       response.json().then(function (resposta) {
-        sessionStorage.usuario = resposta.email_admin;
+        sessionStorage.usuario = resposta.email;
         sessionStorage.id_usuario = resposta.id; // rever o nome deste campo na tabela
+        sessionStorage.admin = resposta.administrador
+        sessionStorage.ativo = resposta.ativo 
         verificarAutenticacao();
       });
     } else {
