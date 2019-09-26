@@ -2,15 +2,14 @@ function verificarAutenticacao() {
   if (sessionStorage.usuario != undefined) {
     if (sessionStorage.ativo == true){
       if (sessionStorage.administrador == true){
-        //loga como administrador
+        window.location.href = 'cadastro.html';
       } else{
-        //loga como funcionário
+        window.location.href = 'dashboard.html' // criar dashboard
       }
     }
     else{
-      // alerta de conta inativa
+      alert('SE E UM MERDA E SUA CONTA FOI INATIVADA')
     }
-    // window.location.href = 'cadastro.html';
   }
 }
 
@@ -27,7 +26,7 @@ function logar() {
     if (response.ok) {
       response.json().then(function (resposta) {
         sessionStorage.usuario = resposta.email;
-        sessionStorage.id_usuario = resposta.id; // rever o nome deste campo na tabela
+        sessionStorage.id_usuario = resposta.id;
         sessionStorage.admin = resposta.administrador
         sessionStorage.ativo = resposta.ativo 
         verificarAutenticacao();

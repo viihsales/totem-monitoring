@@ -45,12 +45,11 @@ router.post('/cadastro_usuario', function (req, res, next) {
     var email = req.body.email;
     var cpf = req.body.cpf;
     var senha = req.body.password;
-    var senhaConfirmation = req.body.passwordConfirmation
 
     if (nome == undefined || email == undefined || cpf == undefined || senha == undefined) {
       throw new Error(`Algo de errado não está certo: ${nome} / ${email} / ${cpf} / ${senha}`);
     }
-    return banco.sql.query(`insert into tb_user (nome, email, cpf, senha, administrador) values ('${nome}', '${email}', '${cpf}', '${senha}', 1 )`);
+    return banco.sql.query(`insert into tb_user (nome, email, cpf, senha, administrador) values ('${nome}', '${email}', '${cpf}', '${senha}', 0 )`);
   }).then(consulta => {
 
     console.log('Usuário cadastrado');
