@@ -1,0 +1,45 @@
+create table tb_aeroporto(
+id_aeroporto int primary key identity(1,1),
+nome_aeroporto varchar(30) NOT NULL,
+cnpj_aeroporto char(18) NOT NULL UNIQUE,
+endereco_aeroporto varchar(40)
+);
+
+create table tb_user(
+id_user int primary key identity(1,1),
+nome varchar (50) NOT NULL,
+cpf_user char(14) NOT NULL UNIQUE,
+email_user varchar (50) NOT NULL,
+senha_user varchar(40) NOT NULL,
+adm bit NOT NULL,
+ativo bit default 1,
+fk_aeroporto int NOT NULL,
+foreign key (fk_aeroporto) references tb_aeroporto(id_aeroporto)
+);
+
+create table tb_totem(
+id_totem int primary key identity(1,1),
+companhia_cliente varchar(40) NOT NULL,
+fk_aeroporto2 int,
+foreign key(fk_aeroporto2) references tb_aeroporto(id_aeroporto)
+);
+
+create table tb_dados(
+id_dados int primary key identity(1,1),
+dd_cpu decimal(5,2),
+dd_memoria decimal(5,2),
+dd_disco decimal(5,2),
+dd_tempo datetime,
+dd_log varchar(20),
+fk_totem int,
+foreign key(fk_totem) references tb_totem(id_totem)
+);
+
+create table tb_log(
+id_log int primary key identity(1,1),
+mensagem varchar(200) NOT NULL,
+nome_log varchar(100) NOT NULL,
+fk_dados int,
+tempo datetime NOT NULL,
+foreign key(fk_dados) references tb_dados(id_dados)
+);
