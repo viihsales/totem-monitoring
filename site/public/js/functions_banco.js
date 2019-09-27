@@ -28,7 +28,7 @@ function logar() {
         sessionStorage.usuario = resposta.email;
         sessionStorage.id_usuario = resposta.id;
         sessionStorage.admin = resposta.administrador
-        sessionStorage.ativo = resposta.ativo 
+        sessionStorage.ativo = resposta.ativo
         verificarAutenticacao();
       });
     } else {

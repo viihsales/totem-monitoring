@@ -53,6 +53,7 @@ router.post('/cadastro_usuario', function (req, res, next) {
   }).then(consulta => {
 
     console.log('Usuário cadastrado');
+    res.send(true);
 
   }).catch(err => {
 
