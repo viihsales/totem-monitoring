@@ -13,7 +13,7 @@ router.post('/login', function (req, res, next) {
     if (email == undefined || senha == undefined) {
       throw new Error(`Algo de errado não está certo: ${email} / ${senha}`);
     }
-    return banco.sql.query(`select * from user_admin where email_admin='${email}' and senha_admin='${senha}'`);
+    return banco.sql.query(`select * from tb_user where email='${email}' and senha='${senha}'`);
   }).then(consulta => {
 
     console.log(`Usuários encontrados: ${JSON.stringify(consulta.recordset)}`);

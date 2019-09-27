@@ -1,10 +1,10 @@
 function verificarAutenticacao() {
   if (sessionStorage.usuario != undefined) {
-    if (sessionStorage.ativo == true){
-      if (sessionStorage.administrador == true){
-        window.location.href = 'cadastro.html';
+    if (sessionStorage.ativo){
+      if (sessionStorage.admin){
+        window.location.href = 'www.facebook.com';
       } else{
-        window.location.href = 'dashboard.html' // criar dashboard
+        window.location.href = 'www.twitter.com'
       }
     }
     else{
@@ -25,10 +25,11 @@ function logar() {
   }).then(function (response) {
     if (response.ok) {
       response.json().then(function (resposta) {
-        sessionStorage.usuario = resposta.email;
-        sessionStorage.id_usuario = resposta.id;
-        sessionStorage.admin = resposta.administrador
-        sessionStorage.ativo = resposta.ativo
+        sessionStorage.usuario = resposta.EMAIL;
+        sessionStorage.id_usuario = resposta.ID;
+        sessionStorage.admin = resposta.ADMINISTRADOR;
+        console.log(resposta.ADMINISTRADOR)
+        sessionStorage.ativo = resposta.ATIVO;
         verificarAutenticacao();
       });
     } else {
