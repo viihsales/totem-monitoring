@@ -7,13 +7,13 @@ router.post('/login', function (req, res, next) {
   banco.conectar().then(() => {
     console.log(`Chegou p/ login: ${JSON.stringify(req.body)}`);
 
-    var email = req.body.email;
+    var cpf = req.body.cpf;
     var senha = req.body.senha;
 
-    if (email == undefined || senha == undefined) {
-      throw new Error(`Algo de errado não está certo: ${email} / ${senha}`);
+    if (cpf == undefined || senha == undefined) {
+      throw new Error(`Algo de errado não está certo: ${cpf} / ${senha}`);
     }
-    return banco.sql.query(`select * from tb_user where email='${email}' and senha='${senha}'`);
+    return banco.sql.query(`select * from tb_user where cpf_user='${cpf}' and senha_user='${senha}'`);
   }).then(consulta => {
 
     console.log(`Usuários encontrados: ${JSON.stringify(consulta.recordset)}`);
@@ -49,7 +49,7 @@ router.post('/cadastro_usuario', function (req, res, next) {
     if (nome == undefined || email == undefined || cpf == undefined || senha == undefined) {
       throw new Error(`Algo de errado não está certo: ${nome} / ${email} / ${cpf} / ${senha}`);
     }
-    return banco.sql.query(`insert into tb_user (nome, email, cpf, senha, administrador) values ('${nome}', '${email}', '${cpf}', '${senha}', 0 )`);
+    return banco.sql.query(`insert into tb_user (nome, email_user, cpf_user, senha_user, adm, fk_aeroporto) values ('${nome}', '${email}', '${cpf}', '${senha}', 0, ${teste} )`);
   }).then(consulta => {
 
     console.log('Usuário cadastrado');
@@ -75,7 +75,7 @@ router.post('/inativar_user', function (req, res, next) {
     if (nome == undefined || email == undefined || cpf == undefined || senha == undefined) {
       throw new Error(`Algo de errado não está certo: ${nome} / ${email} / ${cpf} / ${senha}`);
     }
-    return banco.sql.query(`insert into tb_user (nome, email, cpf, senha, administrador) values ('${nome}', '${email}', '${cpf}', '${senha}', 1 )`);
+    return banco.sql.query(`insert into tb_user (nome, email_user, cpf_user, senha_user, adm) values ('${nome}', '${email}', '${cpf}', '${senha}', 1 )`);
   }).then(consulta => {
 
     console.log('Usuário cadastrado');

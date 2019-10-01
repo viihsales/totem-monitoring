@@ -2,9 +2,9 @@ function verificarAutenticacao() {
   if (sessionStorage.usuario != undefined) {
     if (sessionStorage.ativo){
       if (sessionStorage.admin){
-        window.location.href = 'www.facebook.com';
+        window.location.href = 'cadastro_usuario.html';
       } else{
-        window.location.href = 'www.twitter.com'
+        window.location.href = '../gentella/production/index.html';
       }
     }
     else{
@@ -25,16 +25,16 @@ function logar() {
   }).then(function (response) {
     if (response.ok) {
       response.json().then(function (resposta) {
-        sessionStorage.usuario = resposta.EMAIL;
-        sessionStorage.id_usuario = resposta.ID;
-        sessionStorage.admin = resposta.ADMINISTRADOR;
-        console.log(resposta.ADMINISTRADOR)
-        sessionStorage.ativo = resposta.ATIVO;
+        sessionStorage.usuario = resposta.email_user;
+        sessionStorage.id_usuario = resposta.id_user;
+        sessionStorage.admin = resposta.adm;
+        sessionStorage.ativo = resposta.ativo;
+        sessionStorage.aeroporto = resposta.fk_aeroporto;
         verificarAutenticacao();
       });
     } else {
       console.log('Erro de login!');
-      alert('Login ou senha inválido.')
+      alert('Login ou senha inválido.');
       end_wait();
     }
   });
