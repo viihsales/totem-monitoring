@@ -49,7 +49,7 @@
             </div>
             <div class="profile_info">
               <span>Welcome,</span>
-              <h2>John Doe</h2>
+              <h2 id="nome_do_usuario">John Doe</h2>
             </div>
           </div>
           <!-- /menu profile quick info -->
@@ -64,6 +64,7 @@
                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="form_validation.html" id="form_cadastro">Cadastrar funcionários</a></li>
                   </ul>
                 </li>
                 <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
@@ -128,7 +129,7 @@
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                   aria-expanded="false">
-                  <img src="images/img.jpg" alt="">John Doe
+                  <img src="images/img.jpg" alt=""> <span id="nome_drop">John Does</span>
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -982,6 +983,19 @@
   <!-- Custom Theme Scripts -->
   <script src="../build/js/custom.min.js"></script>
 
+  <!-- Funções do banco JavaScript -->
+  <script type="text/javascript" src="../../js/functions_banco.js"></script>
+
 </body>
+
+<script>
+  var name = sessionStorage.nome
+  nome_do_usuario.innerHTML = name;
+  nome_drop.innerHTML = name;
+
+  if (sessionStorage.admin == 'false') {
+    form_cadastro.style.display = 'none';
+  }
+</script>
 
 </html>
