@@ -1,13 +1,13 @@
 function verificarAutenticacao() {
   if (sessionStorage.usuario != undefined) {
-    if (sessionStorage.ativo){
-      if (sessionStorage.admin){
+    if (sessionStorage.ativo == 'true') {
+      if (sessionStorage.admin == 'true') {
         window.location.href = 'cadastro_usuario.html';
-      } else{
-        window.location.href = '../gentella/production/index.html';
+      } else {
+        window.location.href = 'gentelella/production/index.html';
       }
     }
-    else{
+    else {
       alert('SE E UM MERDA E SUA CONTA FOI INATIVADA')
     }
   }
@@ -45,7 +45,7 @@ function logar() {
 function cadastrarUsuario() {
 
   wait();
-
+  fk.value = sessionStorage.aeroporto;
   var formulario = new URLSearchParams(new FormData(form_cadastro));
 
   fetch('/usuarios/cadastro_usuario', {
@@ -54,7 +54,7 @@ function cadastrarUsuario() {
   }).then(function (response) {
     if (response.ok) {
       response.json().then(function (resposta) {
-        if (resposta == true){
+        if (resposta == true) {
           window.location.href = 'index.html';
         } else {
           alert('Desculpe, Algo deu errado');
