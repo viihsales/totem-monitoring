@@ -1,14 +1,10 @@
 function verificarAutenticacao() {
   if (sessionStorage.usuario != undefined) {
     if (sessionStorage.ativo == 'true') {
-      // if (sessionStorage.admin == 'true') {
-        window.location.href = '/dashs/production/index.html';
-      // } else {
-      //   window.location.href = '/dashs/production/index.html';
-      // }
+      window.location.href = '/dashs/production/index.html';
     }
     else {
-      alert('SE E UM MERDA E SUA CONTA FOI INATIVADA')
+      alert('Conta inativada, por favor contate seu superior')
     }
   }
 }
@@ -48,8 +44,8 @@ function cadastrarUsuario() {
 
   wait();
   fk.value = sessionStorage.aeroporto;
-  var formulario = new URLSearchParams(new FormData(form_cadastro));
-  console.log(formulario)
+  var formulario = new URLSearchParams(new FormData(formulario_cadastro));
+
   fetch('../../usuarios/cadastro_usuario', {
     method: "POST",
     body: formulario
