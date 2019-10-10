@@ -1,5 +1,9 @@
 package monitoramento;
 
+import java.time.LocalDateTime;
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_TIME;
+import java.time.format.FormatStyle;
+
 /**
  *
  * @author Massaru
@@ -27,6 +31,8 @@ public class TelaTotem extends javax.swing.JFrame {
         lbMemoria = new javax.swing.JLabel();
         lbDisco = new javax.swing.JLabel();
         lbSistemaOperacional = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        lbTempo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +71,12 @@ public class TelaTotem extends javax.swing.JFrame {
         lbSistemaOperacional.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbSistemaOperacional.setText("--");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Horario atual:");
+
+        lbTempo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lbTempo.setText("---");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,22 +94,27 @@ public class TelaTotem extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lbCpu))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbSistemaOperacional))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lbMemoria))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbDisco)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(lbDisco))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbTempo))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbSistemaOperacional)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(75, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(108, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(105, 105, 105))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +137,11 @@ public class TelaTotem extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(lbDisco))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(lbTempo))
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -129,7 +150,12 @@ public class TelaTotem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        totem.capturarDados();
         
+        lbMemoria.setText(totem.getMemoria());
+        lbCpu.setText(totem.getCpu());
+        lbTempo.setText(totem.getTempo());
+        lbDisco.setText(totem.getDisco());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
@@ -148,9 +174,11 @@ public class TelaTotem extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lbCpu;
     private javax.swing.JLabel lbDisco;
     private javax.swing.JLabel lbMemoria;
     private javax.swing.JLabel lbSistemaOperacional;
+    private javax.swing.JLabel lbTempo;
     // End of variables declaration//GEN-END:variables
 }
