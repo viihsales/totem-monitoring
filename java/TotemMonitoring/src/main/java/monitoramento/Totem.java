@@ -48,7 +48,7 @@ public class Totem {
 
         StringBuilder builder = new StringBuilder();
 
-        builder.append(String.format("\n%-20s %-20s %-20s %-20s %-20s %-20s",
+        builder.append(String.format("\n%-17s %-20s %-20s %-20s %-20s %-30s",
                 "", "PID", "%CPU", "%MEM", "VSZ", "RSS Name"));
 
         final List<OSProcess> procs;
