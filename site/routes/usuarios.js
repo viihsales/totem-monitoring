@@ -13,7 +13,7 @@ router.post('/login', function (req, res, next) {
     if (cpf == undefined || senha == undefined) {
       throw new Error(`Algo de errado não está certo: ${cpf} / ${senha}`);
     }
-    else{
+    else {
       return banco.sql.query(`select * from tb_user where cpf_user='${cpf}' and senha_user='${senha}'`);
     }
   }).then(consulta => {
@@ -52,13 +52,16 @@ router.post('/cadastro_usuario', function (req, res, next) {
     if (nome == undefined || email == undefined || cpf == undefined || senha == undefined || fk == undefined) {
       throw new Error(`Algo de errado não está certo: ${nome} / ${email} / ${cpf} / ${senha} / ${fk}`);
     }
-    else{
+    else {
       return banco.sql.query(`insert into tb_user (nome, email_user, cpf_user, senha_user, adm, fk_aeroporto) values ('${nome}', '${email}', '${cpf}', '${senha}', 0, ${fk} )`);
     }
   }).then(consulta => {
 
-    console.log('Usuário cadastrado');
-    res.send(true);
+    if (consulta.recordset.length == 1) {
+      res.send(consulta.recordset[0]);
+    } else {
+      res.sendStatus(404);
+    }
 
   }).catch(err => {
 
@@ -80,10 +83,38 @@ router.post('/inativar_user', function (req, res, next) {
     if (nome == undefined || email == undefined || cpf == undefined || senha == undefined) {
       throw new Error(`Algo de errado não está certo: ${nome} / ${email} / ${cpf} / ${senha}`);
     }
-    return banco.sql.query(`insert into tb_user (nome, email_user, cpf_user, senha_user, adm) values ('${nome}', '${email}', '${cpf}', '${senha}', 1 )`);
+    return banco.sql.query(`select * tb_user`)
   }).then(consulta => {
 
     console.log('Usuário cadastrado');
+
+  }).catch(err => {
+
+    var erro = `Erro no cadastro: ${err}`;
+    console.error(erro);
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
+  });
+
+});
+
+router.post('/users', function (req, res, next) {
+
+  banco.conectar().then(() => {
+
+    if (nome == undefined || email == undefined || cpf == undefined || senha == undefined) {
+      throw new Error(`Algo de errado não está certo: ${nome} / ${email} / ${cpf} / ${senha}`);
+    }
+    return banco.sql.query(`select * tb_user where fk_funcionario = ${id}`)
+  }).then(consulta => {
+
+    if (consulta.recordset.length == 1) {
+      res.send(consulta.recordset[0]);
+    } else {
+      res.sendStatus(404);
+    }
 
   }).catch(err => {
 
