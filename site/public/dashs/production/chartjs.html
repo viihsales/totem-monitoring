@@ -17,9 +17,12 @@
   <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <!-- NProgress -->
   <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-
   <!-- Custom Theme Style -->
   <link href="../build/css/custom.min.css" rel="stylesheet">
+  <!-- Funções do banco JavaScript -->
+  <script type="text/javascript" src="../../js/functions_banco.js"></script>
+  <!-- Autenticação -->
+  <script type="text/javascript" src="js/autenticacao.js"></script>
 </head>
 
 <body class="nav-md">
@@ -39,7 +42,7 @@
               <img src="images/img.jpg" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
-              <span>Welcome,</span>
+              <span>BEM-VINDO</span>
               <h2 id="nome_user"></h2>
             </div>
           </div>
@@ -57,9 +60,9 @@
                     <li><a href="index.html">Dashboard</a></li>
                   </ul>
                 </li>
-                <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-bar-chart-o"></i> Gráficos <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a href="chartjs.html">Chart JS</a></li>
+                    <li><a href="chartjs.html">Charts</a></li>
                   </ul>
                 </li>
                 <li id="if_user_adm" style="display: none"><a><i class="fa fa-group"></i> Gerenciamento <span
@@ -72,23 +75,6 @@
             </div>
           </div>
           <!-- /sidebar menu -->
-
-          <!-- menu footer buttons -->
-          <div class="sidebar-footer hidden-small">
-            <a data-toggle="tooltip" data-placement="top" title="Settings">
-              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-              <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="Lock">
-              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="Logout" href="../../login.html">
-              <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-            </a>
-          </div>
-          <!-- menu footer buttons -->
         </div>
       </div>
 
@@ -108,15 +94,8 @@
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  <li><a href="javascript:;"> Profile</a></li>
-                  <li>
-                    <a href="javascript:;">
-                      <span class="badge bg-red pull-right">50%</span>
-                      <span>Settings</span>
-                    </a>
-                  </li>
-                  <li><a href="javascript:;">Help</a></li>
-                  <li><a href="../../login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  <li><a href="../../login.html"><i class="fa pull-right"></i> Ajuda</a></li>
+                  <li><a href="../../login.html"><i class="fa fa-sign-out pull-right"></i> Sair</a></li>
                 </ul>
               </li>
             </ul>
@@ -130,18 +109,7 @@
         <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3>Chart Js <small>Some examples to get you started</small></h3>
-            </div>
-
-            <div class="title_right">
-              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search for...">
-                  <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Go!</button>
-                  </span>
-                </div>
-              </div>
+              <h3>Charts</h3>
             </div>
           </div>
 
@@ -165,7 +133,6 @@
                         </li>
                       </ul>
                     </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
                     </li>
                   </ul>
                   <div class="clearfix"></div>
@@ -192,8 +159,6 @@
                         <li><a href="#">Settings 2</a>
                         </li>
                       </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
                     </li>
                   </ul>
                   <div class="clearfix"></div>
@@ -223,8 +188,6 @@
                         </li>
                       </ul>
                     </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
                   </ul>
                   <div class="clearfix"></div>
                 </div>
@@ -250,8 +213,6 @@
                         <li><a href="#">Settings 2</a>
                         </li>
                       </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
                     </li>
                   </ul>
                   <div class="clearfix"></div>
@@ -281,8 +242,6 @@
                         </li>
                       </ul>
                     </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
                   </ul>
                   <div class="clearfix"></div>
                 </div>
@@ -308,8 +267,6 @@
                         <li><a href="#">Settings 2</a>
                         </li>
                       </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
                     </li>
                   </ul>
                   <div class="clearfix"></div>
@@ -345,14 +302,8 @@
   <script src="../vendors/nprogress/nprogress.js"></script>
   <!-- Chart.js -->
   <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
-
   <!-- Custom Theme Scripts -->
   <script src="../build/js/custom.min.js"></script>
-
-
-  <!-- Funções do banco JavaScript -->
-  <script type="text/javascript" src="../../js/functions_banco.js"></script>
-
 </body>
 
 <script>
