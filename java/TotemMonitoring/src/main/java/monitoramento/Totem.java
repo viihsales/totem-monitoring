@@ -48,21 +48,33 @@ public class Totem {
 
         StringBuilder builder = new StringBuilder();
 
-        builder.append(String.format("\n%-17s %-20s %-20s %-20s %-20s %-30s",
-                "", "PID", "%CPU", "%MEM", "VSZ", "RSS Name"));
-
+//        builder.append(String.format("\n%-17s %-20s %-20s %-20s %-20s %-30s",
+//                "", "PID", "%CPU", "%MEM", "VSZ", "RSS Name"));
         final List<OSProcess> procs;
         procs = Arrays.asList(os.getProcesses(30, ProcessSort.CPU));
 
         for (int i = 0; i < procs.size(); i++) {
             final OSProcess p = procs.get(i);
-            builder.append(String.format("\n%20d %20.1f %20.1f %-20s %-20s %-20s",
-                    p.getProcessID(),
-                    100d * (p.getKernelTime() + p.getUserTime()) / p.getUpTime(),
-                    100d * p.getResidentSetSize() / memory.getTotal(),
-                    FormatUtil.formatBytes(p.getVirtualSize()),
-                    FormatUtil.formatBytes(p.getResidentSetSize()),
-                    p.getName()));
+
+            String pid = String.valueOf(p.getProcessID());
+            String cpuPorcentagem = String.valueOf(100d * (p.getKernelTime() + p.getUserTime()) / p.getUpTime()).substring(0, 7);
+            Double memPorcentagem = 100d * p.getResidentSetSize() / memory.getTotal();
+            String virtualSize = FormatUtil.formatBytes(p.getVirtualSize());
+            String residentSize = FormatUtil.formatBytes(p.getResidentSetSize());
+            String name = p.getName();
+//            String[] teste = {pid, cpuPorcentagem, memPorcentagem, virtualSize, residentSize, name};;
+//            
+//            for (int count = 0; count < teste.length; count++) {
+//                if(teste[i].length() < 20)
+//            }
+
+            builder.append(String.format("\n%20s %20s %20.1f %-20s %-20s %10s",
+                    pid,
+                    cpuPorcentagem,
+                    memPorcentagem,
+                    virtualSize,
+                    residentSize,
+                    name));
         }
         return builder.toString();
     }
