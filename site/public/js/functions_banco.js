@@ -1,5 +1,8 @@
 function verificarAutenticacao() {
-  if (sessionStorage.usuario != undefined) {
+  if (sessionStorage.usuario == undefined) {
+    window.location.href = '/login.html';
+    alert('Você deve estar autenticado');
+  }else{
     if (sessionStorage.ativo == 'true') {
       window.location.href = '/dashs/production/index.html';
     }
