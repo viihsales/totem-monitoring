@@ -2,13 +2,17 @@ package monitoramento;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 import oshi.hardware.GlobalMemory;
 import oshi.hardware.HardwareAbstractionLayer;
 import oshi.software.os.FileSystem;
 import oshi.software.os.OSFileStore;
+import oshi.software.os.OSProcess;
 import oshi.software.os.OperatingSystem;
+import oshi.software.os.OperatingSystem.ProcessSort;
 import oshi.util.FormatUtil;
 import oshi.util.Util;
 
@@ -25,6 +29,7 @@ public class Totem {
     private String memoria;
     private String disco;
     private String tempo;
+    private String processos;
 
     private final SystemInfo si;
     private final HardwareAbstractionLayer hw;
@@ -39,12 +44,37 @@ public class Totem {
         sistemaOperacional = hw.getComputerSystem().toString();
     }
 
+    private String capturarProcessos(final OperatingSystem os, final GlobalMemory memory) {
+
+        StringBuilder builder = new StringBuilder();
+
+        builder.append(String.format("\n%-17s %-20s %-20s %-20s %-20s %-30s",
+                "", "PID", "%CPU", "%MEM", "VSZ", "RSS Name"));
+
+        final List<OSProcess> procs;
+        procs = Arrays.asList(os.getProcesses(30, ProcessSort.CPU));
+
+        for (int i = 0; i < procs.size(); i++) {
+            final OSProcess p = procs.get(i);
+            builder.append(String.format("\n%20d %20.1f %20.1f %-20s %-20s %-20s",
+                    p.getProcessID(),
+                    100d * (p.getKernelTime() + p.getUserTime()) / p.getUpTime(),
+                    100d * p.getResidentSetSize() / memory.getTotal(),
+                    FormatUtil.formatBytes(p.getVirtualSize()),
+                    FormatUtil.formatBytes(p.getResidentSetSize()),
+                    p.getName()));
+        }
+        return builder.toString();
+    }
+
     public void capturarDados() {
         this.capturaTempoAtual();
 
         this.cpu = this.capturaCpu(hw.getProcessor());
         this.memoria = this.capturaMemoria(hw.getMemory());
         this.disco = this.capturaDisco();
+
+        this.processos = capturarProcessos(os, hw.getMemory());
     }
 
     private void capturaTempoAtual() {
@@ -58,7 +88,7 @@ public class Totem {
     private String capturaCpu(CentralProcessor pro) {
         long[] ticks = pro.getSystemCpuLoadTicks();
         Util.sleep(1000);
-        return String.format("%.2f%%", pro.getSystemCpuLoadBetweenTicks(ticks)*100);
+        return String.format("%.2f%%", pro.getSystemCpuLoadBetweenTicks(ticks) * 100);
     }
 
     private String capturaDisco() {
@@ -103,7 +133,12 @@ public class Totem {
         return si;
     }
 
+    public String getProcessos() {
+        return processos;
+    }
+
     public void setTempo(String tempo) {
         this.tempo = tempo;
     }
+
 }
