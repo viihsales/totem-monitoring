@@ -14,7 +14,7 @@
     "mssql": "~5.1.0",
     "@fortawesome/fontawesome-free": "5.9.0",
     "bootstrap": "4.3.1",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "jquery.easing": "^1.4.1"
   },
   "description": "Agency is a one page HTML theme for Bootstrap.",
